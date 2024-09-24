@@ -38,14 +38,18 @@ class Child {
 
 var parent: Parent? = Parent() // parent é uma instância da classe Parent.
 var child: Child? = Child() // child é uma instância da classe Child.
-// Neste ponto, as duas instâncias referenciam uma à outra. Isso cria um ciclo de retenção se você não usar weak para evitar que o ARC (Automatic Reference Counting) consiga desalocar essas instâncias.
+/* Neste ponto, as duas instâncias referenciam uma à outra. Isso cria um ciclo de retenção
+se você não usar weak para evitar que o ARC (Automatic Reference Counting) consiga desalocar 
+essas instâncias. */
 
 parent?.child = child // O parent tenha uma referência para child (parent.child = child).
 child?.parent = parent // O child tenha uma referência para parent (child.parent = parent).
 
 parent = nil
 child = nil
-// Aqui, você está definindo as variáveis parent e child como nil. Mas, como essas duas instâncias têm fortes referências entre si, as instâncias não serão desalocadas da memória, e os métodos deinit não serão chamados. Para resolver:
+/* Aqui, você está definindo as variáveis parent e child como nil. Mas, como essas duas 
+instâncias têm fortes referências entre si, as instâncias não serão desalocadas da memória,
+e os métodos deinit não serão chamados. */
 ```
 
 ### Retain Cycles
